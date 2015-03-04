@@ -5,4 +5,8 @@
     <string name="appwidget_text">Welcome to Widgeet</string>
     <string name="add_widget">Add widget</string>
 
+    <string name="full_text">Full: </string>
+    <string name="happy_text">Happy: </string>
+    <string name="clean_text">Clean: </string>
+
 </resources>

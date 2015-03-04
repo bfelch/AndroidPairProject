@@ -14,19 +14,82 @@
         android:src="@drawable/pixel_pet_000"
         android:minHeight="64dp"
         android:minWidth="64dp"
+        android:layout_margin="@dimen/img_margin"
         />
 
-    <TextView
-        android:id="@+id/appwidget_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/appwidget_text"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        android:layout_margin="8dp"
-        android:contentDescription="@string/appwidget_text"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignBottom="@+id/petView"
+        android:layout_toRightOf="@+id/petView"
+        android:layout_toEndOf="@+id/petView"
+        android:baselineAligned="true"
+        android:layout_margin="@dimen/value_margin">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="end"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/feedView"
+                android:textColor="@color/font_color"
+                android:text="@string/full_text"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/playView"
+                android:textColor="@color/font_color"
+                android:text="@string/happy_text"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/washView"
+                android:textColor="@color/font_color"
+                android:text="@string/clean_text"
+                android:singleLine="false"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="end">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/feedVal"
+                android:textColor="@color/font_color"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/playVal"
+                android:textColor="@color/font_color"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/washVal"
+                android:textColor="@color/font_color"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

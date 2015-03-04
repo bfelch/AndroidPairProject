@@ -6,5 +6,9 @@ Refer to App Widget Documentation for margin information
 http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     -->
     <dimen name="widget_margin">8dp</dimen>
+    <dimen name="img_margin">20dp</dimen>
+    <dimen name="value_margin">10dp</dimen>
+
+    <color name="font_color">#FFFFFF</color>
 
 </resources>
