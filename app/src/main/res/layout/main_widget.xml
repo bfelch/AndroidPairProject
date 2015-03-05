@@ -4,92 +4,126 @@
                 android:padding="@dimen/widget_margin"
                 android:background="#09C">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/petView"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:src="@drawable/pixel_pet_000"
-        android:minHeight="64dp"
-        android:minWidth="64dp"
-        android:layout_margin="@dimen/img_margin"
-        />
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignBottom="@+id/petView"
-        android:layout_toRightOf="@+id/petView"
-        android:layout_toEndOf="@+id/petView"
-        android:baselineAligned="true"
-        android:layout_margin="@dimen/value_margin">
+        android:layout_height="fill_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/petView"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/pixel_pet_000"
+            android:minHeight="64dp"
+            android:minWidth="64dp"
+            android:layout_margin="@dimen/img_margin"/>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="end"
-            android:layout_weight="1"
-            >
+            android:layout_height="fill_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/feedView"
-                android:textColor="@color/font_color"
-                android:text="@string/full_text"
-                />
+                android:layout_alignBottom="@+id/petView"
+                android:layout_toRightOf="@+id/petView"
+                android:layout_toEndOf="@+id/petView"
+                android:baselineAligned="true"
+                android:layout_margin="@dimen/value_margin"
+                android:id="@+id/linearLayout">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/playView"
-                android:textColor="@color/font_color"
-                android:text="@string/happy_text"
-                />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="end"
+                    android:layout_weight="1">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/washView"
-                android:textColor="@color/font_color"
-                android:text="@string/clean_text"
-                android:singleLine="false"
-                />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/feedView"
+                        android:textColor="@color/font_color"
+                        android:text="@string/full_text"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/playView"
+                        android:textColor="@color/font_color"
+                        android:text="@string/happy_text"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/washView"
+                        android:textColor="@color/font_color"
+                        android:text="@string/clean_text"
+                        android:singleLine="false"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="2"
+                    android:gravity="end">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/feedVal"
+                        android:textColor="@color/font_color"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/playVal"
+                        android:textColor="@color/font_color"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/washVal"
+                        android:textColor="@color/font_color"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/standardButtons">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/feedButton"
+                    android:text="@string/feed_button"
+                    android:layout_below="@+id/linearLayout"
+                    android:layout_centerHorizontal="true"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/playButton"
+                    android:text="@string/play_button"
+                    android:layout_below="@+id/linearLayout"
+                    android:layout_centerHorizontal="true"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/washButton"
+                    android:text="@string/wash_button"
+                    android:layout_below="@+id/linearLayout"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="2"
-            android:gravity="end">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/feedVal"
-                android:textColor="@color/font_color"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/playVal"
-                android:textColor="@color/font_color"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/washVal"
-                android:textColor="@color/font_color"
-                />
-        </LinearLayout>
-
     </LinearLayout>
-
 </RelativeLayout>

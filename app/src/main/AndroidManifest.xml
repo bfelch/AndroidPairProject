@@ -21,6 +21,11 @@
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="WidgetFeedButton" />
+                <action android:name="WidgetPlayButton" />
+                <action android:name="WidgetWashButton" />
+            </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"

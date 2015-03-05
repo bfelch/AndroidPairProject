@@ -9,4 +9,8 @@
     <string name="happy_text">Happy: </string>
     <string name="clean_text">Clean: </string>
 
+    <string name="feed_button">Feed</string>
+    <string name="play_button">Play</string>
+    <string name="wash_button">Wash</string>
+
 </resources>
