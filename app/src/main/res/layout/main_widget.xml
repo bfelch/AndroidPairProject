@@ -9,17 +9,58 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
-        <ImageView
+        <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/petView"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/pixel_pet_000"
-            android:minHeight="64dp"
-            android:minWidth="64dp"
-            android:layout_margin="@dimen/img_margin"/>
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/washImgView"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/stink_none"
+                android:minHeight="64dp"
+                android:minWidth="64dp"
+                android:layout_margin="@dimen/img_margin"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/petImgView"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/pet"
+                android:minHeight="64dp"
+                android:minWidth="64dp"
+                android:layout_margin="@dimen/img_margin"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/feedImgView"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/eyes_neutral"
+                android:minHeight="64dp"
+                android:minWidth="64dp"
+                android:layout_margin="@dimen/img_margin"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/playImgView"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/mouth_frown"
+                android:minHeight="64dp"
+                android:minWidth="64dp"
+                android:layout_margin="@dimen/img_margin"/>
+        </FrameLayout>
 
         <LinearLayout
             android:orientation="vertical"
