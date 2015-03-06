@@ -12,5 +12,6 @@
     <string name="feed_button">Feed</string>
     <string name="play_button">Play</string>
     <string name="wash_button">Wash</string>
+    <string name="rand_button">\?</string>
 
 </resources>

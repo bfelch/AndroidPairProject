@@ -25,6 +25,7 @@
                 <action android:name="WidgetFeedButton" />
                 <action android:name="WidgetPlayButton" />
                 <action android:name="WidgetWashButton" />
+                <action android:name="WidgetRandButton" />
             </intent-filter>
 
             <meta-data

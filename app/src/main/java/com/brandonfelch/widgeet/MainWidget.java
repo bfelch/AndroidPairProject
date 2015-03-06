@@ -25,6 +25,8 @@ public class MainWidget extends AppWidgetProvider {
     public static final String WIDGET_PLAY_BUTTON = "WidgetPlayButton";
     public static final String WIDGET_WASH_BUTTON = "WidgetWashButton";
 
+    public static final String WIDGET_RAND_BUTTON = "WidgetRandButton";
+
     static float feedValue, playValue, washValue;
     static float feedTimesPerDay = 2f;
     static float playTimesPerDay = 4f;
@@ -72,7 +74,7 @@ public class MainWidget extends AppWidgetProvider {
 
         switch (intent.getAction()) {
             case WIDGET_FEED_BUTTON:
-                feedValue += .2f + .05 * new Random().nextFloat();
+                feedValue += incrementValue();
 
                 edit.putFloat("feed", feedValue);
 
@@ -81,7 +83,7 @@ public class MainWidget extends AppWidgetProvider {
                 Log.d(debugTag, "feed pressed: " + feedValue);
                 break;
             case WIDGET_PLAY_BUTTON:
-                playValue += .2f + .05 * new Random().nextFloat();
+                playValue += incrementValue();
 
                 edit.putFloat("play", playValue);
 
@@ -90,7 +92,7 @@ public class MainWidget extends AppWidgetProvider {
                 Log.d(debugTag, "play pressed: " + playValue);
                 break;
             case WIDGET_WASH_BUTTON:
-                washValue += .2f + .05 * new Random().nextFloat();
+                washValue += incrementValue();
 
                 edit.putFloat("wash", washValue);
 
@@ -98,13 +100,18 @@ public class MainWidget extends AppWidgetProvider {
 
                 Log.d(debugTag, "wash pressed: " + washValue);
                 break;
+            case WIDGET_RAND_BUTTON:
+                randomValues(edit);
+
+                Log.d(debugTag, "rand pressed");
+                break;
         }
 
         Log.d(debugTag, "button pressed");
         super.onReceive(context, intent);
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.main_widget);
-        updateWidgetViews(views, AppWidgetManager.getInstance(context), intent.getIntExtra("appId", 0));
+        updateWidgetViews(views, AppWidgetManager.getInstance(context), prefs.getInt("appId", 0));
     }
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -114,19 +121,20 @@ public class MainWidget extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.main_widget);
 
         Intent feedIntent = new Intent(WIDGET_FEED_BUTTON);
-        feedIntent.putExtra("appId", appWidgetId);
         PendingIntent pendingFeedIntent = PendingIntent.getBroadcast(context, 0, feedIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.feedButton, pendingFeedIntent);
 
         Intent playIntent = new Intent(WIDGET_PLAY_BUTTON);
-        playIntent.putExtra("appId", appWidgetId);
         PendingIntent pendingPlayIntent = PendingIntent.getBroadcast(context, 0, playIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.playButton, pendingPlayIntent);
 
         Intent washIntent = new Intent(WIDGET_WASH_BUTTON);
-        washIntent.putExtra("appId", appWidgetId);
         PendingIntent pendingWashIntent = PendingIntent.getBroadcast(context, 0, washIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.washButton, pendingWashIntent);
+
+        Intent randIntent = new Intent(WIDGET_RAND_BUTTON);
+        PendingIntent pendingRandIntent = PendingIntent.getBroadcast(context, 0, randIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        views.setOnClickPendingIntent(R.id.randButton, pendingRandIntent);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         feedValue = prefs.getFloat("feed", 0.0f);
@@ -136,11 +144,13 @@ public class MainWidget extends AppWidgetProvider {
 
         SharedPreferences.Editor edit = prefs.edit();
 
+        edit.putInt("appId", appWidgetId);
+
         // Update values
         if (didInit) {
-            feedValue -= (1 / (feedTimesPerDay * numUpdatesPerDay));
-            playValue -= (1 / (playTimesPerDay * numUpdatesPerDay));
-            washValue -= (1 / (washTimesPerDay * numUpdatesPerDay));
+            feedValue -= feedTimesPerDay / numUpdatesPerDay;
+            playValue -= playTimesPerDay / numUpdatesPerDay;
+            washValue -= washTimesPerDay / numUpdatesPerDay;
 
             Log.d("updateValues", "did Update");
         } else {
@@ -189,6 +199,23 @@ public class MainWidget extends AppWidgetProvider {
         } else {
             return "#CC0000";
         }
+    }
+
+    static void randomValues(SharedPreferences.Editor edit) {
+        Random rand = new Random();
+        feedValue = 1.2f * rand.nextFloat();
+        playValue = 1.2f * rand.nextFloat();
+        washValue = 1.2f * rand.nextFloat();
+
+        edit.putFloat("feed", feedValue);
+        edit.putFloat("play", playValue);
+        edit.putFloat("wash", washValue);
+
+        edit.commit();
+    }
+
+    static float incrementValue() {
+        return .2f + (.2f * new Random().nextFloat());
     }
 }
 
