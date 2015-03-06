@@ -23,6 +23,7 @@
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CUSTOM_FILTER" value="debug" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.brandonfelch.widgeet" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a8120b4-94d9-422d-9684-f05e16182bdd" name="Default" comment="" />
@@ -67,24 +68,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainWidget.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainWidget.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/brandonfelch/widgeet/MainWidget.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1411" max-vertical-offset="3876">
-              <caret line="106" column="22" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.92967033" vertical-offset="3776" max-vertical-offset="4675">
+              <caret line="247" column="25" selection-start-line="247" selection-start-column="25" selection-end-line="247" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7597#7598#0" expanded="true" />
-                <element signature="e#7658#7659#0" expanded="true" />
+                <element signature="e#9133#9134#0" expanded="true" />
+                <element signature="e#9194#9195#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main_widget.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main_widget.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main_widget.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2453271" vertical-offset="269" max-vertical-offset="3111">
+            <state vertical-scroll-proportion="-3.8888888" vertical-offset="269" max-vertical-offset="3111">
               <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
               <folding>
                 <element signature="e#212#234#0" expanded="true" />
@@ -1092,9 +1093,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/WidgetReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/brandonfelch/widgeet/WidgetReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/brandonfelch/widgeet/MainWidget.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/main_widget.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/brandonfelch/widgeet/MainWidget.java" />
       </list>
     </option>
   </component>
@@ -1540,8 +1541,8 @@
           <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7597#7598#0" expanded="true" />
-            <element signature="e#7658#7659#0" expanded="true" />
+            <element signature="e#9133#9134#0" expanded="true" />
+            <element signature="e#9194#9195#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1609,8 +1610,8 @@
           <caret line="83" column="22" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7597#7598#0" expanded="true" />
-            <element signature="e#7658#7659#0" expanded="true" />
+            <element signature="e#9133#9134#0" expanded="true" />
+            <element signature="e#9194#9195#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1670,8 +1671,8 @@
           <caret line="19" column="3" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7597#7598#0" expanded="true" />
-            <element signature="e#7658#7659#0" expanded="true" />
+            <element signature="e#9133#9134#0" expanded="true" />
+            <element signature="e#9194#9195#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1723,8 +1724,8 @@
           <caret line="19" column="3" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7597#7598#0" expanded="true" />
-            <element signature="e#7658#7659#0" expanded="true" />
+            <element signature="e#9133#9134#0" expanded="true" />
+            <element signature="e#9194#9195#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1786,18 +1787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/brandonfelch/widgeet/MainWidget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1411" max-vertical-offset="3876">
-          <caret line="106" column="22" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7597#7598#0" expanded="true" />
-            <element signature="e#7658#7659#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.52" vertical-offset="0" max-vertical-offset="391">
@@ -1808,7 +1797,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main_widget.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2453271" vertical-offset="269" max-vertical-offset="3111">
+        <state vertical-scroll-proportion="-3.8888888" vertical-offset="269" max-vertical-offset="3111">
           <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
           <folding>
             <element signature="e#212#234#0" expanded="true" />
@@ -1829,6 +1818,18 @@
       </provider>
       <provider editor-type-id="android-designer">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/brandonfelch/widgeet/MainWidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.92967033" vertical-offset="3776" max-vertical-offset="4675">
+          <caret line="247" column="25" selection-start-line="247" selection-start-column="25" selection-end-line="247" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9133#9134#0" expanded="true" />
+            <element signature="e#9194#9195#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>

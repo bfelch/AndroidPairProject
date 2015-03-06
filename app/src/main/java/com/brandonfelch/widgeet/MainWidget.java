@@ -181,24 +181,71 @@ public class MainWidget extends AppWidgetProvider {
         views.setTextViewText(R.id.playVal, String.format("%.2f", playValue * 100) + "%");
         views.setTextViewText(R.id.washVal, String.format("%.2f", washValue * 100) + "%");
 
-        views.setTextColor(R.id.feedVal, Color.parseColor(getTextColor(feedValue)));
-        views.setTextColor(R.id.playVal, Color.parseColor(getTextColor(playValue)));
-        views.setTextColor(R.id.washVal, Color.parseColor(getTextColor(washValue)));
+        views.setTextColor(R.id.feedVal, Color.parseColor(getTextColor(getState(feedValue))));
+        views.setTextColor(R.id.playVal, Color.parseColor(getTextColor(getState(playValue))));
+        views.setTextColor(R.id.washVal, Color.parseColor(getTextColor(getState(washValue))));
+
+        switch (getState(feedValue)) {
+            case 0:
+                views.setImageViewResource(R.id.feedImgView, R.drawable.eyes_wide);
+                break;
+            case 1:
+                views.setImageViewResource(R.id.feedImgView, R.drawable.eyes_neutral);
+                break;
+            case 2:
+                views.setImageViewResource(R.id.feedImgView, R.drawable.eyes_heavy);
+                break;
+        }
+
+        switch (getState(playValue)) {
+            case 0:
+                views.setImageViewResource(R.id.playImgView, R.drawable.mouth_smile);
+                break;
+            case 1:
+                views.setImageViewResource(R.id.playImgView, R.drawable.mouth_neutral);
+                break;
+            case 2:
+                views.setImageViewResource(R.id.playImgView, R.drawable.mouth_frown);
+                break;
+        }
+
+        switch (getState(washValue)) {
+            case 0:
+                views.setImageViewResource(R.id.washImgView, R.drawable.stink_none);
+                break;
+            case 1:
+                views.setImageViewResource(R.id.washImgView, R.drawable.stink_light);
+                break;
+            case 2:
+                views.setImageViewResource(R.id.washImgView, R.drawable.stink_heavy);
+                break;
+        }
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
-    static String getTextColor(float value) {
-        if (value > 1.05f) {
-            return "#CC0000";
-        } else if (value > .67f) {
-            return "#FFFFFF";
+    static int getState(float value) {
+         if (value < 1.05f && value > .67f) {
+            return 0;
         } else if (value > .33f) {
-            return "#FFCC00";
+            return 1;
         } else {
-            return "#CC0000";
+            return 2;
         }
+    }
+
+    static String getTextColor(int state) {
+        switch (state) {
+            case 0:
+                return "#FFFFFF";
+            case 1:
+                return "#FFCC00";
+            case 2:
+                return "#CC0000";
+        }
+
+        return "#000000";
     }
 
     static void randomValues(SharedPreferences.Editor edit) {
