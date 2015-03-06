@@ -226,10 +226,14 @@ public class MainWidget extends AppWidgetProvider {
     }
 
     static int getState(float value) {
-         if (value < 1.05f && value > .67f) {
-            return 0;
-        } else if (value > .33f) {
-            return 1;
+        if (value < 1.05f) {
+            if (value > .67f) {
+                return 0;
+            } else if (value > .33f) {
+                return 1;
+            } else {
+                return 2;
+            }
         } else {
             return 2;
         }
