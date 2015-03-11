@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.opengl.Visibility;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import java.util.Random;
@@ -26,6 +28,7 @@ public class MainWidget extends AppWidgetProvider {
     public static final String WIDGET_WASH_BUTTON = "WidgetWashButton";
 
     public static final String WIDGET_RAND_BUTTON = "WidgetRandButton";
+    public static final String WIDGET_RESET_BUTTON = "WidgetResetButton";
 
     static float feedValue, playValue, washValue;
     static float feedTimesPerDay = 2f;
@@ -35,6 +38,8 @@ public class MainWidget extends AppWidgetProvider {
     static float numUpdatesPerDay = 24f * 2; // updates every half hour
 
     static boolean didInit;
+
+    static int killCount;
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -56,14 +61,22 @@ public class MainWidget extends AppWidgetProvider {
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        killCount = prefs.getInt("killCount", 0);
+
         SharedPreferences.Editor edit = prefs.edit();
 
         edit.clear();
+
+        edit.putInt("killCount", ++killCount);
+
         edit.commit();
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.main_widget);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor edit = prefs.edit();
@@ -71,12 +84,18 @@ public class MainWidget extends AppWidgetProvider {
         feedValue = prefs.getFloat("feed", 0.0f);
         playValue = prefs.getFloat("play", 0.0f);
         washValue = prefs.getFloat("wash", 0.0f);
+        killCount = prefs.getInt("killCount", 0);
 
         switch (intent.getAction()) {
             case WIDGET_FEED_BUTTON:
                 feedValue += incrementValue();
 
+                if (getState(feedValue) == 3) {
+                    killCount++;
+                }
+
                 edit.putFloat("feed", feedValue);
+                edit.putInt("killCount", killCount);
 
                 edit.commit();
 
@@ -85,7 +104,12 @@ public class MainWidget extends AppWidgetProvider {
             case WIDGET_PLAY_BUTTON:
                 playValue += incrementValue();
 
+                if (getState(playValue) == 3) {
+                    killCount++;
+                }
+
                 edit.putFloat("play", playValue);
+                edit.putInt("killCount", killCount);
 
                 edit.commit();
 
@@ -94,7 +118,12 @@ public class MainWidget extends AppWidgetProvider {
             case WIDGET_WASH_BUTTON:
                 washValue += incrementValue();
 
+                if (getState(washValue) == 3) {
+                    killCount++;
+                }
+
                 edit.putFloat("wash", washValue);
+                edit.putInt("killCount", killCount);
 
                 edit.commit();
 
@@ -105,13 +134,27 @@ public class MainWidget extends AppWidgetProvider {
 
                 Log.d(debugTag, "rand pressed");
                 break;
+            case WIDGET_RESET_BUTTON:
+                feedValue = 1.0f;
+                playValue = 1.0f;
+                washValue = 1.0f;
+                didInit = false;
+
+                edit.putFloat("feed", feedValue);
+                edit.putFloat("play", playValue);
+                edit.putFloat("wash", washValue);
+                edit.putBoolean("init", didInit);
+
+                edit.commit();
+
+                views.setViewVisibility(R.id.resetViews, View.GONE);
+                views.setViewVisibility(R.id.standardButtons, View.VISIBLE);
         }
 
         Log.d(debugTag, "button pressed");
         super.onReceive(context, intent);
 
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.main_widget);
-        updateWidgetViews(views, AppWidgetManager.getInstance(context), prefs.getInt("appId", 0));
+        updateWidgetViews(views, context, AppWidgetManager.getInstance(context), prefs.getInt("appId", 0));
     }
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -141,6 +184,7 @@ public class MainWidget extends AppWidgetProvider {
         playValue = prefs.getFloat("play", 0.0f);
         washValue = prefs.getFloat("wash", 0.0f);
         didInit = prefs.getBoolean("init", false);
+        killCount = prefs.getInt("killCount", 0);
 
         SharedPreferences.Editor edit = prefs.edit();
 
@@ -151,6 +195,12 @@ public class MainWidget extends AppWidgetProvider {
             feedValue -= feedTimesPerDay / numUpdatesPerDay;
             playValue -= playTimesPerDay / numUpdatesPerDay;
             washValue -= washTimesPerDay / numUpdatesPerDay;
+
+            if (getState(feedValue) == 3 ||
+                getState(playValue) == 3 ||
+                getState(washValue) == 3) {
+                killCount++;
+            }
 
             Log.d("updateValues", "did Update");
         } else {
@@ -168,15 +218,16 @@ public class MainWidget extends AppWidgetProvider {
         edit.putFloat("feed", feedValue);
         edit.putFloat("play", playValue);
         edit.putFloat("wash", washValue);
+        edit.putInt("killCount", killCount);
 
-        updateWidgetViews(views, appWidgetManager, appWidgetId);
+        updateWidgetViews(views, context, appWidgetManager, appWidgetId);
 
         edit.commit();
 
         Log.d(debugTag, "in Update");
     }
 
-    static void updateWidgetViews(RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId) {
+    static void updateWidgetViews(RemoteViews views, Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
         views.setTextViewText(R.id.feedVal, String.format("%.2f", feedValue * 100) + "%");
         views.setTextViewText(R.id.playVal, String.format("%.2f", playValue * 100) + "%");
         views.setTextViewText(R.id.washVal, String.format("%.2f", washValue * 100) + "%");
@@ -184,6 +235,8 @@ public class MainWidget extends AppWidgetProvider {
         views.setTextColor(R.id.feedVal, Color.parseColor(getTextColor(getState(feedValue))));
         views.setTextColor(R.id.playVal, Color.parseColor(getTextColor(getState(playValue))));
         views.setTextColor(R.id.washVal, Color.parseColor(getTextColor(getState(washValue))));
+
+        views.setTextViewText(R.id.killVal, " " + killCount);
 
         switch (getState(feedValue)) {
             case 0:
@@ -195,6 +248,9 @@ public class MainWidget extends AppWidgetProvider {
             case 2:
                 views.setImageViewResource(R.id.feedImgView, R.drawable.eyes_heavy);
                 break;
+            case 3:
+                stateDead(views, context);
+                break;
         }
 
         switch (getState(playValue)) {
@@ -204,6 +260,8 @@ public class MainWidget extends AppWidgetProvider {
             case 1:
                 views.setImageViewResource(R.id.playImgView, R.drawable.mouth_neutral);
                 break;
+            case 3:
+                stateDead(views, context);
             case 2:
                 views.setImageViewResource(R.id.playImgView, R.drawable.mouth_frown);
                 break;
@@ -216,6 +274,8 @@ public class MainWidget extends AppWidgetProvider {
             case 1:
                 views.setImageViewResource(R.id.washImgView, R.drawable.stink_light);
                 break;
+            case 3:
+                stateDead(views, context);
             case 2:
                 views.setImageViewResource(R.id.washImgView, R.drawable.stink_heavy);
                 break;
@@ -231,11 +291,15 @@ public class MainWidget extends AppWidgetProvider {
                 return 0;
             } else if (value > .33f) {
                 return 1;
-            } else {
+            } else if (value > .00f) {
                 return 2;
+            } else {
+                return 3;
             }
-        } else {
+        } else if (value < 1.25f) {
             return 2;
+        } else {
+            return 3;
         }
     }
 
@@ -250,6 +314,16 @@ public class MainWidget extends AppWidgetProvider {
         }
 
         return "#000000";
+    }
+
+    static void stateDead(RemoteViews views, Context context) {
+        views.setImageViewResource(R.id.feedImgView, R.drawable.eyes_dead);
+        views.setViewVisibility(R.id.standardButtons, View.GONE);
+        views.setViewVisibility(R.id.resetViews, View.VISIBLE);
+
+        Intent resetIntent = new Intent(WIDGET_RESET_BUTTON);
+        PendingIntent pendingResetIntent = PendingIntent.getBroadcast(context, 0, resetIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        views.setOnClickPendingIntent(R.id.resetButton, pendingResetIntent);
     }
 
     static void randomValues(SharedPreferences.Editor edit) {

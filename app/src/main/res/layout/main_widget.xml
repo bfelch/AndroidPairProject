@@ -90,14 +90,16 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/feedView"
                         android:textColor="@color/font_color"
-                        android:text="@string/full_text"/>
+                        android:text="@string/full_text"
+                        android:singleLine="true"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/playView"
                         android:textColor="@color/font_color"
-                        android:text="@string/happy_text"/>
+                        android:text="@string/happy_text"
+                        android:singleLine="true"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -105,7 +107,7 @@
                         android:id="@+id/washView"
                         android:textColor="@color/font_color"
                         android:text="@string/clean_text"
-                        android:singleLine="false"/>
+                        android:singleLine="true"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -119,19 +121,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/feedVal"
-                        android:textColor="@color/font_color"/>
+                        android:textColor="@color/font_color"
+                        android:singleLine="true"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/playVal"
-                        android:textColor="@color/font_color"/>
+                        android:textColor="@color/font_color"
+                        android:singleLine="true"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/washVal"
-                        android:textColor="@color/font_color"/>
+                        android:textColor="@color/font_color"
+                        android:singleLine="true"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -147,7 +152,9 @@
                     android:id="@+id/feedButton"
                     android:text="@string/feed_button"
                     android:layout_below="@+id/linearLayout"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_centerHorizontal="true"
+                    android:singleLine="true"
+                    android:maxWidth="60dp"/>
 
                 <Button
                     android:layout_width="wrap_content"
@@ -155,7 +162,9 @@
                     android:id="@+id/playButton"
                     android:text="@string/play_button"
                     android:layout_below="@+id/linearLayout"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_centerHorizontal="true"
+                    android:singleLine="true"
+                    android:maxWidth="60dp"/>
 
                 <Button
                     android:layout_width="wrap_content"
@@ -163,7 +172,9 @@
                     android:id="@+id/washButton"
                     android:text="@string/wash_button"
                     android:layout_below="@+id/linearLayout"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_centerHorizontal="true"
+                    android:singleLine="true"
+                    android:maxWidth="60dp"/>
 
                 <Button
                     android:layout_width="wrap_content"
@@ -171,7 +182,38 @@
                     android:id="@+id/randButton"
                     android:text="@string/rand_button"
                     android:layout_below="@+id/linearLayout"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_centerHorizontal="true"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/resetViews"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kill_text"
+                    android:id="@+id/killView"
+                    android:textColor="@color/font_color"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/killVal"
+                    android:textColor="@color/font_color"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reset_button"
+                    android:id="@+id/resetButton"
+                    android:layout_marginRight="@dimen/img_margin"
+                    android:layout_marginLeft="@dimen/img_margin"/>
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

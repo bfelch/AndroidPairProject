@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidPairProject.iml" filepath="$PROJECT_DIR$/AndroidPairProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Widgeet.iml" filepath="$PROJECT_DIR$/Widgeet.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

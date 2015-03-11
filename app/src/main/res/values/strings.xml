@@ -14,4 +14,7 @@
     <string name="wash_button">Wash</string>
     <string name="rand_button">\?</string>
 
+    <string name="kill_text">Kill Count: </string>
+    <string name="reset_button">Reset</string>
+
 </resources>
